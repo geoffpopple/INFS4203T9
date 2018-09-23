@@ -11,16 +11,17 @@ knitr::opts_chunk$set(echo = TRUE)
 ###K-Means Clustering
 ```{r clustering,echo=TRUE,}
 iris <- read.table("./Data/iris.data",sep=',')
-names(iris) <-c("Sepal.Length","Sepal.Width","Petal.Width","Petal.Legth")
+names(iris) <-c("Sepal.Length","Sepal.Width","Petal.Width","Petal.Legth","Species")
 iris2 <- iris[,1:4]
 set.seed(2018)
 n<-nrow(iris)
 idx <- sample(1:n,40)
 irisSample <- iris2[idx,]
-hc <-hclust(dist(irisSample),method = "ave")
-plot(hc,hang=-1,labels=iris$Species[idx])
-
-nclust=3
-rect.hclust(hc,k=nclust)
-groups <- cutree(hc,k=nclust)
+for (nclust in 2:6){
+  hc <-hclust(dist(irisSample),method = "ave")
+  plot(hc,hang=-1,labels=iris$Species[idx],main="")
+  title(paste("Cluster Dendogram, Level = ",nclust, sep=""))
+  rect.hclust(hc,k=nclust)
+  groups <- cutree(hc,k=nclust)
+}
 ```

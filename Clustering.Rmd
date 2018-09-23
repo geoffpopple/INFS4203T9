@@ -16,9 +16,9 @@ iris2 <- iris[,1:4]
 set.seed(2018)
 nclust=7
 for (k in 1:nclust){
-(kmeans.result <- kmeans(iris2,k))
-plot(iris[,c("Sepal.Length","Sepal.Width")],col=kmeans.result$cluster)
-title(paste("K = ",k, sep=""))
-points(kmeans.result$centers[,c("Sepal.Length","Sepal.Width")],col=1:k,pch=8,cex=2)
+  (kmeans.result <- kmeans(iris2,k))
+  plot(iris[,c("Sepal.Length","Sepal.Width")],col=kmeans.result$cluster)
+  title(paste("K = ",k, sep=""))
+  points(kmeans.result$centers[,c("Sepal.Length","Sepal.Width")],col=1:k,pch=8,cex=2)
 }
 ```
