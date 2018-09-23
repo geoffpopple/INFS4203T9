@@ -1,0 +1,26 @@
+---
+title: "Clustering2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Clustering
+###K-Means Clustering
+```{r clustering,echo=TRUE,}
+iris <- read.table("./Data/iris.data",sep=',')
+names(iris) <-c("Sepal.Length","Sepal.Width","Petal.Width","Petal.Legth")
+iris2 <- iris[,1:4]
+set.seed(2018)
+n<-nrow(iris)
+idx <- sample(1:n,40)
+irisSample <- iris2[idx,]
+hc <-hclust(dist(irisSample),method = "ave")
+plot(hc,hang=-1,labels=iris$Species[idx])
+
+nclust=3
+rect.hclust(hc,k=nclust)
+groups <- cutree(hc,k=nclust)
+```
